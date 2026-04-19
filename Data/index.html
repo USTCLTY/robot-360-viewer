@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="机器人 360° 交互式展示 - 单轨道渲染图">
+    <meta name="theme-color" content="#1a1a1a">
+
+    <title>机器人 360° 展示</title>
+
+    <!-- To embed into another site, include the following scripts -->
+    <!-- You may want to minify them for production environments -->
+    <script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/browserdetect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/apple_core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/library.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/threesixty.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wheelzoom.js" type="text/javascript"></script>
+    <script src="js/observers.js" type="text/javascript" defer></script>
+
+    <!-- The following are not required for embedding -->
+    <script src="js/viewer.js" type="text/javascript" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+
+<body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner-ring"></div>
+            <div class="loading-text">正在加载资源...</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0 / 180</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-left">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="title-group">
+                <span class="project-name">机器人 360° 展示</span>
+                <span class="project-subtitle">单轨道渲染图 · 拖拽旋转</span>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button title="自动旋转" id="btn-autoplay" class="svg-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button title="实际大小" id="btn-actual" class="svg-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="6" width="12" height="12" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <path d="M1 6V1h5M23 6V1h-5M1 18v5h5M23 18v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button title="适应屏幕" id="btn-fit" class="svg-button hidden">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="16" height="16" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <path d="M1 6V1h5M23 6V1h-5M1 18v5h5M23 18v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button title="全屏" id="btn-fullscreen" class="svg-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="threesixty" class="container">
+            <div id="threesixty-main">
+                <!-- To embed into another site, include the viewer element -->
+                <div id="viewer"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="hint-overlay" id="hint-overlay">
+        <div class="hint-content">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+            <span>左右拖拽旋转查看</span>
+        </div>
+    </div>
+</body>
+
+</html>
