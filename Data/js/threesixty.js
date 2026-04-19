@@ -1,12 +1,12 @@
 
 threeSixty = {
     init: function () {
-        this._vr = new AC.VR('viewer', 'images/Frame######.png', [180, 1], {
+        this._vr = new AC.VR('viewer', 'images/Frame######.jpg', [180, 1], {
             invert: false,
             initialPos: [0, 0],
             introSpins: 0.5,
             introDuration: 1.2,
-            fps: 30,
+            fps: 15,
             grabRotateDistance: 800
         });
     },
