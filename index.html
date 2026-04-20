@@ -3,47 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=Data/index.html">
     <title>机器人 360° 展示</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: #0d0d0d; }
-        #loader {
-            position: fixed; inset: 0; z-index: 10;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: #0d0d0d; color: #f5f5f7;
-            transition: opacity 0.5s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #loader.hidden { opacity: 0; pointer-events: none; }
-        .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid rgba(255,255,255,0.1);
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0d0d0d;
+            color: #f5f5f7;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
             border-top-color: #0071e3;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loader-text { margin-top: 16px; font-size: 14px; color: #86868b; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .title {
+            margin-top: 24px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        .subtitle {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #86868b;
+        }
+        a {
+            color: #0071e3;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loader-text">正在加载展示页面...</div>
-    </div>
-    <iframe src="Data/index.html" id="viewer-frame"></iframe>
-    <script>
-        var frame = document.getElementById('viewer-frame');
-        var loader = document.getElementById('loader');
-        frame.addEventListener('load', function() {
-            loader.classList.add('hidden');
-        });
-        // Fallback: hide loader after 10s even if iframe hasn't fired load
-        setTimeout(function() {
-            if (!loader.classList.contains('hidden')) {
-                loader.classList.add('hidden');
-            }
-        }, 10000);
-    </script>
+    <div class="loader"></div>
+    <div class="title">正在进入展示页面...</div>
+    <div class="subtitle">如果页面没有自动跳转，请 <a href="Data/index.html">点击这里</a></div>
 </body>
 </html>
